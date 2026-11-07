@@ -68,21 +68,19 @@ export function Footer() {
           <div key={col.title}>
             <p className="text-sm font-semibold text-white">{col.title}</p>
             <ul className="mt-3 flex flex-col gap-2 text-sm text-primary-200">
-              {col.links.map((link, i) =>
-                'to' in link ? (
-                  <li key={i}>
+              {col.links.map((link, i) => (
+                <li key={i}>
+                  {'to' in link && link.to !== undefined ? (
                     <Link to={link.to} className="hover:text-white">
                       {link.label}
                     </Link>
-                  </li>
-                ) : (
-                  <li key={i}>
-                    <a href={link.href} className="hover:text-white">
+                  ) : (
+                    <a href={'href' in link ? link.href : '#'} className="hover:text-white">
                       {link.label}
                     </a>
-                  </li>
-                )
-              )}
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         ))}
